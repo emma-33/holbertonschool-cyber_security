@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo ss -a -n --tcp -p
+sudo ss -a -n -t -p

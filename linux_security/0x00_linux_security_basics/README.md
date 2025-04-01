@@ -6,3 +6,4 @@ Linux Security Basics
 4-network_services.sh
 5-audit_system.sh
 6-capture_analyze.sh
+7-scan.sh

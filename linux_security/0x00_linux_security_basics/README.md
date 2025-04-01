@@ -5,3 +5,4 @@ Linux Security Basics
 3-firewall_rules.sh
 4-network_services.sh
 5-audit_system.sh
+6-capture_analyze.sh

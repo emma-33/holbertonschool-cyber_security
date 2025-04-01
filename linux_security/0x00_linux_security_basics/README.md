@@ -4,3 +4,4 @@ Linux Security Basics
 2-incoming_connections.sh
 3-firewall_rules.sh
 4-network_services.sh
+5-audit_system.sh

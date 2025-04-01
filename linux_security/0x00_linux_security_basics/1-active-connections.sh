@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo netstat -a --tcp -n
+sudo ss -a -n --tcp -p

@@ -5,3 +5,5 @@ Active Reconnaissance
 2-injectable.txt
 3-database.txt
 4-tables.txt
+101-flag.txt
+5-hidden_dir.txt

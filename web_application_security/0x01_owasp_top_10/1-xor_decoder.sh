@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+    echo "Usage: ./1-xor_decoder.sh {xor}encoded_message"
+    exit 1
+fi
+
 encoded_mess="$1"
 
 no_xor_encoded_mess=${encoded_mess:5}

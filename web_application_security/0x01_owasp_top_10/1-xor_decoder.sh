@@ -1,23 +1,2 @@
 #!/bin/bash
-
-if [ -z "$1" ]; then
-    echo "Usage: ./1-xor_decoder.sh {xor}encoded_message"
-    exit 1
-fi
-
-
-encoded_mess=$(echo "$1" | sed 's/{xor}//')
-
-Base64_mess=$(echo "$encoded_mess" | base64 -d | tr -d '\0')
-
-
-
-decoded_message=""
-for (( i=0; i<${#Base64_mess}; i++ )); do
-    char="${Base64_mess:$i:1}" 
-    ascii_value=$(printf "%d" "'$char")
-    xor_char=$((ascii_value ^ 95))
-    decoded_mess+="$(printf "$(printf '\\x%x' $xor_char)")"
-done
-
-echo -e "$decoded_mess"
+python3 -c "from base64 import b64decode; print(bytes(byte ^ 0x5f for byte in b64decode('$1'.replace('{xor}', ''))).decode('utf-8'))"

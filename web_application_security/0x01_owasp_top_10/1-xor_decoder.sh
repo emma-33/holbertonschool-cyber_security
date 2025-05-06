@@ -15,10 +15,10 @@ key=95
 
 decoded_message=""
 for (( i=0; i<${#Base64_mess}; i++ )); do
-    char="${Base64_mess:i:1}" 
+    char="${Base64_mess:$i:1}" 
     ascii_value=$(printf "%d" "'$char")
     xor_char=$(($ascii_value ^ $key))
-    decoded_mess+=$(printf \\$(printf '%03o' "$xor_char"))
+    decoded_mess+="$(printf "\\x$(printf '%x' $xor_char)")"
 done
 
 echo "$decoded_mess"

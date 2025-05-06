@@ -10,13 +10,13 @@ encoded_mess=$(echo "$1" | sed 's/{xor}//')
 
 Base64_mess=$(echo "$encoded_mess" | base64 -d | tr -d '\0')
 
-key=95
+
 
 decoded_message=""
 for (( i=0; i<${#Base64_mess}; i++ )); do
     char="${Base64_mess:$i:1}" 
     ascii_value=$(printf "%d" "'$char")
-    xor_char=$((ascii_value ^ key))
+    xor_char=$((ascii_value ^ 95))
     decoded_mess+="$(printf "$(printf '\\x%x' $xor_char)")"
 done
 

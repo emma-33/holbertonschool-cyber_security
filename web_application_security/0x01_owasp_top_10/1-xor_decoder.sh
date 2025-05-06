@@ -4,7 +4,7 @@ encoded_mess="$1"
 
 no_xor_encoded_mess=${encoded_mess:5}
 
-Base64_mess=$(echo "$no_xor_encoded_mess" | base64 -d )
+Base64_mess=$(echo "$no_xor_encoded_mess" | base64 -d | tr -d '\0')
 
 key=95
 

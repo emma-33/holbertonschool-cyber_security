@@ -7,7 +7,7 @@ fi
 
 encoded_mess="$1"
 
-no_xor_encoded_mess=${encoded_mess:5}
+no_xor_encoded_mess=$(echo "$encoded_mess" | sed 's/{xor}//')
 
 Base64_mess=$(echo "$no_xor_encoded_mess" | base64 -d | tr -d '\0')
 

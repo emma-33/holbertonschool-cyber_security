@@ -1,2 +1,2 @@
 #!/bin/bash
-(echo -n "$1" | openssl passwd -6 rand 16) > 3_hash.txt
+(echo -n "$1" | openssl dgst -sha512) > 3_hash.txt

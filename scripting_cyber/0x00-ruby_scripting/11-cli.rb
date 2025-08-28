@@ -12,7 +12,7 @@ options = {}
 OptionParser.new { |option|
     option.banner = "Usage: cli.rb [options]"
 
-    option.on("-aTASK", "--add=TASK", "Add a new task") { |task|
+    option.on("-aTASK", "--add TASK", "Add a new task") { |task|
         options[:add] = task
     }
 
@@ -20,7 +20,7 @@ OptionParser.new { |option|
         options[:list] = true
     }
 
-    option.on("-rINDEX", "--remove=INDEX", Integer, "Remove a task by index") { |index|
+    option.on("-rINDEX", "--remove INDEX", Integer, "Remove a task by index") { |index|
         options[:remove] = index
     }
 
@@ -47,11 +47,15 @@ elsif options[:list]
     end
 
 elsif options[:remove]
+    index = options[:remove].to_i
     tasks = File.readlines(TASKS_FILE, chomp: true)
-    index = options[:remove] - 1
 
-    removed = tasks.delete_at(index)
+    if index.between?(1, tasks.size)
+        removed = tasks.delete_at(index - 1)
+        File.write(TASKS_FILE, tasks.join("\n") + "\n")
 
-    puts "Task '#{removed}' removed."
-
+        puts "Task '#{removed}' removed."
+    else
+        puts "Invalid index."
+    end
 end

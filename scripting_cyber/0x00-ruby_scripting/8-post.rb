@@ -14,7 +14,13 @@ def post_request(url, body_params)
 
     response = http.request(request)
 
-    puts "Response status: #{response.code} #{response.message}"
-    puts "Response body:"
-    puts JSON.pretty_generate(JSON.parse(response.body))
+    if response.code.to_i == 404
+        puts "Response status: #{response.code} #{response.message}"
+        puts "Response body:"
+        puts "{}" 
+    else
+        puts "Response status: #{response.code} #{response.message}"
+        puts "Response body:"
+        puts JSON.pretty_generate(JSON.parse(response.body))
+    end
 end

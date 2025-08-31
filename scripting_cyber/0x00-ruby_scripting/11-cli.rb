@@ -12,7 +12,7 @@ options = {}
 OptionParser.new { |option|
     option.banner = "Usage: cli.rb [options]"
 
-    option.on("-aTASK", "--add TASK", "Add a new task") { |task|
+    option.on("-a", "--add TASK", "Add a new task") { |task|
         options[:add] = task
     }
 
@@ -20,7 +20,7 @@ OptionParser.new { |option|
         options[:list] = true
     }
 
-    option.on("-rINDEX", "--remove INDEX", Integer, "Remove a task by index") { |index|
+    option.on("-r", "--remove INDEX", Integer, "Remove a task by index") { |index|
         options[:remove] = index
     }
 
@@ -41,6 +41,7 @@ elsif options[:list]
     if tasks.empty?
         puts "No tasks found."
     else
+        puts "Tasks:"
         tasks.each_with_index { |task, index|
             puts "#{index + 1}. #{task}"
     }

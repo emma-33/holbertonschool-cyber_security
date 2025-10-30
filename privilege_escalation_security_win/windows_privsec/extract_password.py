@@ -40,12 +40,11 @@ def decode_password(encoded_password):
 
 def start_admin_session(password):
     """Start an admin session using 'runas'"""
-    dir_name = f'"cmd.exe /K dir C:\\Users\\SuperAdministrator\\Desktop"'
-    command = f'runas /user:SuperAdministrator {dir_name}'
     try:
-        subprocess.run(command, shell=True)
+        command = f'runas /user:Administrator "{password}" cmd.exe'
+        subprocess.run(command, shell=True, check=True)
         print("[+] Admin session initiated.")
-    except Exception as e:
+    except subprocess.CalledProcessError as e:
         print(f"[-] Failed to start admin session: {e}")
 
 

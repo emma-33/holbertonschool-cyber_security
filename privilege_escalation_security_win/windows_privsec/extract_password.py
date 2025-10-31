@@ -22,7 +22,7 @@ def extract_password(file_path):
             match = pattern.search(file.read())
             if match:
                 return match.group(1)
-    except Exception:
+    except Exception(OSError, UnicodeDecodeError):
         pass
 
     return None
@@ -33,7 +33,7 @@ def decode_password(encoded_password):
     try:
         decoded_password = base64.b64decode(encoded_password).decode("utf-8")
         print(f"[+] Decoded Admin Password: {decoded_password}")
-    except:
+    except(UnicodeDecodeError, TypeError):
         decoded_password = encoded_password
         print(f"[+] Plaintext Admin Password: {decoded_password}")
 
